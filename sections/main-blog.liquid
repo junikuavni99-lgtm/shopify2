@@ -1,0 +1,23 @@
+<section class="sec">
+  <div class="wrap">
+    <div class="sec__head"><p class="eyebrow">Journal</p><h1 class="h2">{{ blog.title }}</h1></div>
+    {% if blog.articles.size > 0 %}
+      <div class="grid">
+        {% for article in blog.articles %}
+          <article class="card">
+            {% if article.image %}<a href="{{ article.url }}" class="card__img"><img src="{{ article.image | image_url: width: 700 }}" alt="{{ article.title | escape }}" loading="lazy" width="700" height="700"></a>{% endif %}
+            <div class="card__body">
+              <a href="{{ article.url }}" class="card__title">{{ article.title }}</a>
+              <p class="card__desc">{{ article.excerpt_or_content | strip_html | truncate: 120 }}</p>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="empty">No articles yet.</p>
+    {% endif %}
+  </div>
+</section>
+{% schema %}
+{ "name": "Blog", "settings": [] }
+{% endschema %}

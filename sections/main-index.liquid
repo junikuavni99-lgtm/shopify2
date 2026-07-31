@@ -1,0 +1,35 @@
+<section class="hero">
+  <div class="wrap hero__grid">
+    <div>
+      <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+      <h1 class="h1">{{ section.settings.heading }}</h1>
+      <p class="muted">{{ section.settings.subheading }}</p>
+      <p style="margin-top:26px">
+        <a class="btn" href="{{ routes.all_products_collection_url }}">Shop the boutique</a>
+        <a class="btn btn--ghost" href="{{ routes.collections_url }}">Collections</a>
+      </p>
+    </div>
+    <div class="hero__media">
+      {% if section.settings.image %}
+        <img src="{{ section.settings.image | image_url: width: 1200 }}" alt="{{ section.settings.heading | escape }}" width="1200" height="1500">
+      {% else %}
+        <img src="{{ 'hero-dog.jpg' | asset_url }}" alt="{{ section.settings.heading | escape }}" width="1200" height="1500">
+      {% endif %}
+    </div>
+  </div>
+</section>
+<div class="marquee"><div class="marquee__t">
+  {% for i in (1..2) %}<span>Couture grooming</span><span>&bull;</span><span>Apothecary rituals</span><span>&bull;</span><span>Concierge care</span><span>&bull;</span>{% endfor %}
+</div></div>
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Pawfect Maison" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Luxury care, tail to paw" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "Curated grooming rituals, apothecary essentials and considered objects for the ones who matter most." },
+    { "type": "image_picker", "id": "image", "label": "Hero image" }
+  ],
+  "presets": [{ "name": "Hero" }]
+}
+{% endschema %}

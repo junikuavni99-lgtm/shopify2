@@ -1,0 +1,23 @@
+<section class="sec">
+  <div class="wrap">
+    <div class="sec__head"><p class="eyebrow">Search</p><h1 class="h2">Find your ritual</h1></div>
+    <form action="{{ routes.search_url }}" method="get" role="search" style="display:flex;gap:12px;flex-wrap:wrap">
+      <input type="text" name="q" value="{{ search.terms | escape }}" placeholder="Search the boutique…" style="flex:1;min-width:220px">
+      <button class="btn" type="submit">Search</button>
+    </form>
+    {% if search.performed %}
+      {% if search.results_count > 0 %}
+        <div class="grid" style="margin-top:36px">
+          {% for item in search.results %}
+            {% if item.object_type == 'product' %}{% render 'product-card', product: item %}{% endif %}
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="empty">No products found.</p>
+      {% endif %}
+    {% endif %}
+  </div>
+</section>
+{% schema %}
+{ "name": "Search", "settings": [] }
+{% endschema %}

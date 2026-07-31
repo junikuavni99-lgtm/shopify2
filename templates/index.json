@@ -1,0 +1,7 @@
+{
+  "sections": {
+    "main": { "type": "main-index", "settings": {} },
+    "featured": { "type": "featured-products", "settings": { "heading": "The Boutique", "count": 12 } }
+  },
+  "order": ["main", "featured"]
+}

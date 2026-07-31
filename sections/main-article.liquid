@@ -1,0 +1,11 @@
+<article class="sec">
+  <div class="wrap" style="max-width:760px">
+    <p class="eyebrow">{{ article.published_at | date: '%d %b %Y' }}</p>
+    <h1 class="h2">{{ article.title }}</h1>
+    {% if article.image %}<div class="pdp__media" style="margin:26px 0"><img src="{{ article.image | image_url: width: 1400 }}" alt="{{ article.title | escape }}" width="1400" height="900"></div>{% endif %}
+    <div class="pdp__desc">{{ article.content }}</div>
+  </div>
+</article>
+{% schema %}
+{ "name": "Article", "settings": [] }
+{% endschema %}

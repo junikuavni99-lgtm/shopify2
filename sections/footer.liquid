@@ -1,0 +1,32 @@
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr__grid">
+      <div>
+        <a class="brand" href="{{ routes.root_url }}" style="color:#f3ede2">Paw<span>fect</span></a>
+        <p class="muted" style="max-width:28ch;margin-top:12px;color:#cfc6b7">{{ settings.tagline }}</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="{{ routes.all_products_collection_url }}">All products</a></li>
+          <li><a href="{{ routes.collections_url }}">Collections</a></li>
+          <li><a href="{{ routes.cart_url }}">Cart</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Care</h4>
+        <ul>
+          <li><a href="{{ routes.search_url }}">Search</a></li>
+          {% for link in linklists.footer.links %}<li><a href="{{ link.url }}">{{ link.title }}</a></li>{% endfor %}
+        </ul>
+      </div>
+    </div>
+    <div class="ftr__bot">
+      <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}</span>
+      <span>Crafted with care</span>
+    </div>
+  </div>
+</footer>
+{% schema %}
+{ "name": "Footer", "settings": [] }
+{% endschema %}

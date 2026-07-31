@@ -1,0 +1,28 @@
+<section class="sec">
+  <div class="wrap">
+    <div class="sec__head">
+      <p class="eyebrow">Index</p>
+      <h1 class="h2">Collections</h1>
+    </div>
+    {% if collections.size > 0 %}
+      <div class="grid">
+        {% for coll in collections %}
+          <article class="card">
+            <a href="{{ coll.url }}" class="card__img">
+              {% if coll.featured_image %}<img src="{{ coll.featured_image | image_url: width: 700 }}" alt="{{ coll.title | escape }}" loading="lazy" width="700" height="700">{% endif %}
+            </a>
+            <div class="card__body">
+              <a href="{{ coll.url }}" class="card__title">{{ coll.title }}</a>
+              <p class="card__desc">{{ coll.products_count }} products</p>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="empty">No collections yet.</p>
+    {% endif %}
+  </div>
+</section>
+{% schema %}
+{ "name": "List collections", "settings": [] }
+{% endschema %}

@@ -1,0 +1,20 @@
+<header class="hdr">
+  <div class="wrap hdr__in">
+    <a class="brand" href="{{ routes.root_url }}">Paw<span>fect</span></a>
+    <nav class="nav">
+      {% for link in linklists.main-menu.links %}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {% else %}
+        <a href="{{ routes.all_products_collection_url }}">Boutique</a>
+        <a href="{{ routes.collections_url }}">Collections</a>
+        <a href="{{ routes.search_url }}">Search</a>
+      {% endfor %}
+    </nav>
+    <div class="hdr__cart">
+      <a class="pill" href="{{ routes.cart_url }}">Bag (<span data-cart-count>{{ cart.item_count }}</span>)</a>
+    </div>
+  </div>
+</header>
+{% schema %}
+{ "name": "Header", "settings": [] }
+{% endschema %}
