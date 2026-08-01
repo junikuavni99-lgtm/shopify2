@@ -23,3 +23,38 @@ document.addEventListener('click', async (e) => {
     btn.disabled = false;
   }
 });
+
+/* PDP: gallery thumbs, quantity stepper, sticky add-to-cart */
+document.addEventListener('click', (e) => {
+  const thumb = e.target.closest('.thumb');
+  if (thumb) {
+    const main = document.getElementById('PdpMain');
+    if (main) main.src = thumb.getAttribute('data-src');
+    document.querySelectorAll('.thumb').forEach((t) => t.classList.remove('is-active'));
+    thumb.classList.add('is-active');
+    return;
+  }
+
+  const step = e.target.closest('[data-qty]');
+  if (step) {
+    const input = document.getElementById('PdpQty');
+    if (input) {
+      const next = Math.max(1, (parseInt(input.value, 10) || 1) + Number(step.getAttribute('data-qty')));
+      input.value = next;
+    }
+    return;
+  }
+
+  const sticky = e.target.closest('#StickyAdd');
+  if (sticky) {
+    const form = document.querySelector('.pdp__form');
+    if (form) form.requestSubmit ? form.requestSubmit() : form.submit();
+  }
+});
+
+document.addEventListener('change', (e) => {
+  if (e.target.id !== 'PdpVariant') return;
+  const price = e.target.selectedOptions[0]?.getAttribute('data-price');
+  const submit = document.querySelector('.pdp__form .btn--lg');
+  if (price && submit && !submit.disabled) submit.textContent = 'Add to Cart — ' + price;
+});
